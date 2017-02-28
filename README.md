@@ -4,11 +4,11 @@
 # Question 1 (Naked Twins)
 Q: How do we use constraint propagation to solve the naked twins problem?  
 A: Naked twins strategy is find all instances of naked twins and eliminate the naked twins as possibilities for their peers.
- The naked twins function will be called from the reduce_puzzle function in which  apply eliminate, only_choice and naked_twins strategy are applied.   The search can be applied for hard problems.  
+   To solve the sudoku problem by using Depth first search, eliminate, only_choice and naked_twins strategy.   
 
 # Question 2 (Diagonal Sudoku)
 Q: How do we use constraint propagation to solve the diagonal sudoku problem?  
-A: The approach is to use reduce_puzzle and depth first search strategy with additional diagonal units added to the unit collection. In the reduce puzzle function, we apply eliminate, only_choice and naked_twins strategy.
+A:  To solve the sudoku problem by using Depth first search, eliminate, only_choice and naked_twins strategy for  additional   diagonal units added to the unit collection.
 
 
 ### Install
