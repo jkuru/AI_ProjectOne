@@ -44,26 +44,24 @@ def naked_twins(values):
      twins  =  [innerBox for i1,outerBox in enumerate(unit) for i2,innerBox in enumerate(unit) if (i1 != i2) and (len(values[outerBox]) > 1) and values[outerBox] == values[innerBox]]
 
     """
+    newTwins = {}
+    # Find all instances of naked twins, capture the unit index and naked twin box 
+    for unitIdx,unit in enumerate(unitlist):
+      for idx1,box in enumerate(unit):
+        for idx2,innerBox in enumerate(unit):
+          if values[box] is values[innerBox] and len(values[box]) is 2 and idx1 != idx2:
+               newTwins[box] = unitIdx
+               newTwins[innerBox] = unitIdx
 
-    twins = []
-    # Find all instances of naked twins
-    for box in values:
-        for peer in peers[box]:
-             if values[peer] is values[box] and len(values[peer]) is 2:
-                 twins.append(box)
-                 twins.append(peer)
-    
-    # Eliminate the naked twins as possibilities for their peers
-    for box in list(set(twins)):
-        for peer in peers[box]:
-            # should not replace twins
-           if  values[box] != values[peer] and len(values[peer]) > 2:
-                for digit in values[box]:
-                     if digit in values[peer]:
-                        assign_value(values,peer,values[peer].replace(digit,''))
-
-    print("_" * 100)
-    print(display(values))
+    # eliminate the naked twins as possibilities  from a row,col unit
+    for k,v in newTwins.items():
+        for unitIdx,unit in enumerate(unitlist):
+            if unitIdx is v:
+              for box in unit:
+               if  values[box] != values[k] and len(values[box]) > 2:
+                 for digit in values[k]:
+                  if digit in values[box]:
+                    values = assign_value(values,box,values[box].replace(digit,''))
     return values
 
 def cross(A, B):
