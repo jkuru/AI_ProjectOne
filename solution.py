@@ -37,15 +37,24 @@ def naked_twins(values):
 
     Returns:
         the values dictionary with the naked twins eliminated from peers.
-    """
+
+     Discussion:
+         http://www.sudokuwiki.org/naked_candidates
+
+        Naked_twins method is you are trying to iterate over boxes in the same peer,
+        instead of iterate over boxes in the same unit (from unitlist).
+
+        Observe this example: http://www.sudokuwiki.org/naked_candidates.
+        In the first row, there are values '16' in A2 and A3, so the these digits
+        could be removed from other boxes in the same row. Notice that H2 and J3 (should be I3) both have '1' and '6',
+        but you cannot remove them from these two
+
 
     """
-     for unit in unitlist:
-     twins  =  [innerBox for i1,outerBox in enumerate(unit) for i2,innerBox in enumerate(unit) if (i1 != i2) and (len(values[outerBox]) > 1) and values[outerBox] == values[innerBox]]
 
-    """
+
     newTwins = {}
-    # Find all instances of naked twins, capture the unit index and naked twin box 
+    # Find all instances of naked twins, capture the unit index and naked twin box
     for unitIdx,unit in enumerate(unitlist):
       for idx1,box in enumerate(unit):
         for idx2,innerBox in enumerate(unit):
