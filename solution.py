@@ -52,10 +52,7 @@ def naked_twins(values):
              if values[peer] is values[box] and len(values[peer]) is 2:
                  twins.append(box)
                  twins.append(peer)
-                 
-    for c in list(set(twins)):
-        print("c",c)
-
+    
     # Eliminate the naked twins as possibilities for their peers
     for box in list(set(twins)):
         for peer in peers[box]:
